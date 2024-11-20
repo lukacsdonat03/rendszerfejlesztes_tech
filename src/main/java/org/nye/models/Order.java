@@ -7,6 +7,7 @@ public class Order {
     private List<OrderedProduct> orderedProducts;
     private String status;
     private ShippingMethod shippingMethod;
+    private Coupon coupon;
 
     public Order() {
     }
@@ -51,10 +52,20 @@ public class Order {
     }
 
     public double getTotalPrice() {
+        double result = 0;
+
         double productsTotal = orderedProducts.stream().mapToDouble(OrderedProduct::getTotalPrice).sum();
         double shippingCost = shippingMethod != null ? shippingMethod.getCost() : 0;
-        return productsTotal + shippingCost;
+
+        result = productsTotal + shippingCost;
+
+        if(this.coupon != null && this.coupon.isValid()){
+            result = this.coupon.applyDiscount(result);
+        }
+
+        return result;
     }
+
 
     @Override
     public String toString() {

@@ -9,8 +9,6 @@ public class Product{
     private int stock;
     private ProductStatus status;
 
-    public Product() {
-    }
 
     public Product(long id, String name, String description, double price, int stock,ProductStatus status) {
         this.id = id;

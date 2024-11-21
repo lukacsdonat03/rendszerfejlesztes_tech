@@ -29,11 +29,11 @@ public class Wishlist {
         return true;
     }
 
-    public boolean removeItem(String item) {
+    public boolean removeItem(Product item) {
         return items.remove(item);
     }
 
-    public boolean containsItem(String item) {
+    public boolean containsItem(Product item) {
         return items.contains(item);
     }
 
